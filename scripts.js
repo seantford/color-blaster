@@ -1,92 +1,119 @@
 var colors = [
-	//"#FF0000"
 	"rgb(255, 0, 0)",
-	//"#ff8000"
 	"rgb(255, 128, 0)",
-	//"#ffff00"
 	"rgb(255, 255, 0)",
-	//"#80ff00"
 	"rgb(128, 255, 0)",
-	//"#00ff00"
 	"rgb(0, 255, 0)",
-	//"#00ff80"
 	"rgb(0, 255, 128)",
-	//"#00ffff"
 	"rgb(0, 255, 255)",
-	//"#007fff"
-	"rgb(0, 127, 255)",
-	//"#0000ff"
+	"rgb(0, 128, 255)",
 	"rgb(0, 0, 255)",
-	//"#7f00ff"
-	"rgb(127, 0, 255)",
-	//"#ff00ff"
+	"rgb(128, 0, 255)",
 	"rgb(255, 0, 255)",
-	//"#ff0080"
-	"rgb(255, 0, 128)", 
-	//"#ffffff"
+	"rgb(255, 0, 128)"
+]
+
+var colorsBW = [
+	"rgb(0, 0, 0)",
 	"rgb(255, 255, 255)"
 ]
 
+function newIndex(array) {
+	// return a random index number
+	return Math.floor((Math.random() * (array.length)));
+};
 
 
-//function will repeat every 800ms without repeating colors
-setInterval(function(){
-	//store current background color 
-	var current = $("body").css( "background-color" );
-		console.log("the current bg color is " + current);
 
-	//random number color index
-	var next = Math.floor(Math.random() * (colors.length + 1));
-		console.log("next will be " + colors[next]);
+var bw = false;
+var color = false;
+var setIntBW = setInterval(blastBW, 1000);
+var setIntColor = setInterval(blastColor, 1000);
 
-	//if the next color is equal to the current color, pick a new random color
+//click the button 
+$(".bw-btn").click( function(){
+	console.log("bw: " +bw+ "  color: " + color);
 
-	if ( current == colors[next] ) {
+	//turn other mode off
+	color =false;
+	console.log("color should now be false: " + color)
+	//if this mode is off, turn it on
+	if (bw === false) {
+		console.log("bw should be false here:  "+bw+" triggering now");
+		clearInterval(setIntColor);
+		setIntBW();
 
-		//next will be the previous color in the array
-		next -= 1;
+		//set this mode to on
+		bw = true;
+		console.log("just triggered, should now be true: "+bw);
+	} 
+});
 
-		if (next < 0) {
 
-			next +=2;
-			console.log("real oops, next will be " + colors[next]);
-		}
 
-		console.log("oops, next will be " + colors[next]);
 
+
+
+
+$(".color-btn").click( function(){
+	console.log(color);
+	bw = false;
+	if (color === false) {
+		console.log("color should be false here:  "+color+" triggering now");
+		clearInterval(blastBW);
+		setInterval(blastColor, 500);
+		color = true;
+		console.log("just triggered, should now be true: "+color);
 	}
 
-	
-
-	//change CSS background color to one with new index
-	$("body").css("background", colors[next]);
-		console.log("just changed it to " + colors[next]);
+});
 
 
-}, 800);
+
+var last;
 
 
-//alert popup with instructions
-alert("Press 'cmd + shift + F' to go fullscreen (Mac), then press 'esc' to hide the mouse!")
-	//NEEDS WINDOWS INSTRUCTIONS
+function blastBW() {
+	//pick a random number for the next index
+	next = newIndex(colorsBW);
+	//if the rgb val of colors[next] is the last color blasted
+	while (colorsBW[next] == last) {
+		//pick a new random number for the next index
+		next = newIndex(colorsBW);
+	}
+	//change CSS background color to one with the new index
+	$("body").css("background-color", colorsBW[next]);
+	//set new bg color as last
+	last = $("body").css("background-color");
+	return last;
+};
+// setInterval(blastBW, 500);
 
 
-	//TO DO:
+function blastColor() {
 
-//stop colors from repeating
+	//pick a random number for the next index
+	next = newIndex(colors);
+	//console.log("1 next"+next+"colors[next]"+colors[next]+"last"+last);
 
-//upon page load, theres a window w/instructions and $ AD $ SPACE $ 
+	//if the rgb val of colors[next] is the last color blasted
+	while (colors[next] == last) {
 
-//different color palettes
+		//pick a new random number for the next index
+		next = newIndex(colors);
+		//console.log("2 next"+next+"colors[next]"+colors[next]+"last"+last);
+	}
 
-//disable screen saver
+	//change CSS background color to one with the new index
+	$("body").css("background-color", colors[next]);
+	//console.log("3 next"+next+"colors[next]"+colors[next]+"last"+last);
 
-//make mouse invisible after inactivity
+	//set new bg color as last
+	last = $("body").css("background-color");
+	//console.log("4 next"+next+"colors[next]"+colors[next]+"last"+last);
 
-//fullscreen toggle button
-	//when mouse is moving make visible
-	//invisible when mouse is idle
-
-//cut out jQuery if possible/practical in the end
+	return last;
+};
+//setInterval(blastColor, 500);
 
 
