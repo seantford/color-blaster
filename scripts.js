@@ -27,21 +27,18 @@ function newIndex(array) {
 
 var bw = false;
 var color = false;
-var setIntBW = setInterval(blastBW, 1000);
-var setIntColor = setInterval(blastColor, 1000);
 
 //click the button 
 $(".bw-btn").click( function(){
 	console.log("bw: " +bw+ "  color: " + color);
 
 	//turn other mode off
-	color =false;
+	color = false;
 	console.log("color should now be false: " + color)
 	//if this mode is off, turn it on
 	if (bw === false) {
 		console.log("bw should be false here:  "+bw+" triggering now");
-		clearInterval(setIntColor);
-		setIntBW();
+		setInterval(blastBW, 500);
 
 		//set this mode to on
 		bw = true;
@@ -50,17 +47,11 @@ $(".bw-btn").click( function(){
 });
 
 
-
-
-
-
-
 $(".color-btn").click( function(){
 	console.log(color);
 	bw = false;
 	if (color === false) {
 		console.log("color should be false here:  "+color+" triggering now");
-		clearInterval(blastBW);
 		setInterval(blastColor, 500);
 		color = true;
 		console.log("just triggered, should now be true: "+color);
