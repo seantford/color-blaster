@@ -25,7 +25,6 @@ function newIndex(array) {
 
 
 
-var mode = true;
 var bw = false;
 var color = false;
 
@@ -34,7 +33,7 @@ $(".bw-btn").click( function(){
 	console.log("bw: " +bw+ "  color: " + color);
 
 	//turn other mode off
-	color =false;
+	color = false;
 	console.log("color should now be false: " + color)
 	//if this mode is off, turn it on
 	if (bw === false) {
@@ -46,11 +45,6 @@ $(".bw-btn").click( function(){
 		console.log("just triggered, should now be true: "+bw);
 	} 
 });
-
-
-
-
-
 
 
 $(".color-btn").click( function(){
