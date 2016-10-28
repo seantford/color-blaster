@@ -57,13 +57,15 @@ var color = false;
 
 
 $(".play").click( function(){
-	console.log(color);
+	// console.log(color);
 	bw = false;
 	if (color === false) {
-		console.log("color should be false here:  "+color+" triggering now");
+		// console.log("color should be false here:  "+color+" triggering now");
 		setInterval(blastColor, 500);
 		color = true;
-		console.log("just triggered, should now be true: "+color);
+		// console.log("just triggered, should now be true: "+color);
+		$(".play").fadeOut( 7500);
+		$()
 	}
 
 });
