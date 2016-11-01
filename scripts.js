@@ -13,10 +13,19 @@ var colors = [
 	"rgb(255, 0, 128)"
 ]
 
-var colorsBW = [
-	"rgb(0, 0, 0)",
-	"rgb(255, 255, 255)"
-]
+
+//function will repeat every 800ms
+// setInterval(function(){
+// 	//random number color index
+// 	var x = Math.floor(Math.random() * (colors.length + 1));
+// 	//change CSS background color to one with new index
+// 	$("body").css("background", colors[x]);
+// }, 800);
+
+// var colorsBW = [
+// 	"rgb(0, 0, 0)",
+// 	"rgb(255, 255, 255)"
+// ]
 
 function newIndex(array) {
 	// return a random index number
@@ -25,36 +34,38 @@ function newIndex(array) {
 
 
 
-var bw = false;
+// var bw = false;
 var color = false;
 
-//click the button 
-$(".bw-btn").click( function(){
-	console.log("bw: " +bw+ "  color: " + color);
+// //click the button 
+// $(".bw-btn").click( function(){
+// 	console.log("bw: " +bw+ "  color: " + color);
 
-	//turn other mode off
-	color = false;
-	console.log("color should now be false: " + color)
-	//if this mode is off, turn it on
-	if (bw === false) {
-		console.log("bw should be false here:  "+bw+" triggering now");
-		setInterval(blastBW, 500);
+// 	//turn other mode off
+// 	color = false;
+// 	console.log("color should now be false: " + color)
+// 	//if this mode is off, turn it on
+// 	if (bw === false) {
+// 		console.log("bw should be false here:  "+bw+" triggering now");
+// 		setInterval(blastBW, 500);
 
-		//set this mode to on
-		bw = true;
-		console.log("just triggered, should now be true: "+bw);
-	} 
-});
+// 		//set this mode to on
+// 		bw = true;
+// 		console.log("just triggered, should now be true: "+bw);
+// 	} 
+// });
 
 
-$(".color-btn").click( function(){
-	console.log(color);
+$(".play").click( function(){
+	// console.log(color);
 	bw = false;
 	if (color === false) {
-		console.log("color should be false here:  "+color+" triggering now");
+		// console.log("color should be false here:  "+color+" triggering now");
 		setInterval(blastColor, 500);
 		color = true;
-		console.log("just triggered, should now be true: "+color);
+		// console.log("just triggered, should now be true: "+color);
+		$(".play").fadeOut( 7500);
+		$()
 	}
 
 });
@@ -64,21 +75,21 @@ $(".color-btn").click( function(){
 var last;
 
 
-function blastBW() {
-	//pick a random number for the next index
-	next = newIndex(colorsBW);
-	//if the rgb val of colors[next] is the last color blasted
-	while (colorsBW[next] == last) {
-		//pick a new random number for the next index
-		next = newIndex(colorsBW);
-	}
-	//change CSS background color to one with the new index
-	$("body").css("background-color", colorsBW[next]);
-	//set new bg color as last
-	last = $("body").css("background-color");
-	return last;
-};
-// setInterval(blastBW, 500);
+// function blastBW() {
+// 	//pick a random number for the next index
+// 	next = newIndex(colorsBW);
+// 	//if the rgb val of colors[next] is the last color blasted
+// 	while (colorsBW[next] == last) {
+// 		//pick a new random number for the next index
+// 		next = newIndex(colorsBW);
+// 	}
+// 	//change CSS background color to one with the new index
+// 	$("body").css("background-color", colorsBW[next]);
+// 	//set new bg color as last
+// 	last = $("body").css("background-color");
+// 	return last;
+// };
+// // setInterval(blastBW, 500);
 
 
 function blastColor() {
@@ -105,6 +116,6 @@ function blastColor() {
 
 	return last;
 };
-//setInterval(blastColor, 500);
+// setInterval(blastColor, 500);
 
 
