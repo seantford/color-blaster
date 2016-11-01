@@ -55,6 +55,15 @@ var color = false;
 // 	} 
 // });
 
+function hoverUp() {
+	if (color=true){
+		$(".play").hover(function() {
+			$(".play").fadeTo(333, 1);
+		}, function(){
+			$(".play").fadeTo(333, 0);
+		});
+	}
+};
 
 $(".play").click( function(){
 	// console.log(color);
@@ -64,11 +73,15 @@ $(".play").click( function(){
 		setInterval(blastColor, 500);
 		color = true;
 		// console.log("just triggered, should now be true: "+color);
-		$(".play").fadeOut( 7500);
-		$()
+		hoverUp();
+		$(".play").fadeTo(3333, 0);
+
+
+		
 	}
 
 });
+
 
 
 
